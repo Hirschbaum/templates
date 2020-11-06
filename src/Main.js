@@ -1,19 +1,39 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import { TextField, Container, Typography } from "@material-ui/core";
 
-//varje gång efteråt att jag har skrivit in input field, ska totalsumman updateras och sparas om
-//setTotal => e.preventDefault(), loop: total = total + e.target.value
 function Main() {
   const [income, setIncome] = useState({});
+  const [incomeTotal, setIncomeTotal] = useState(0);
+
+  function incomeTotalHandler(obj) {
+    let objClone = { ...obj };
+    let sum = Object.values(objClone).reduce(
+      (prev, current) => parseInt(prev) + parseInt(current),
+      0
+    );
+    setIncomeTotal(sum);
+  }
+
+  useEffect(() => {
+    setIncome(income);
+  }, [income]);
+
+  useEffect(() => {
+    incomeTotalHandler(income);
+  }, [income]);
 
   function incomeHandler(e) {
     let incomeData = { ...income, [e.target.name]: e.target.value };
     setIncome(incomeData);
   }
 
-  console.log(income);
+  /*function calculateIncome(e) {
+    incomeHandler(e);
+    incomeTotalHandler(income);
+  }*/
+  console.log(income, incomeTotal);
 
   return (
     <Container>
@@ -35,16 +55,9 @@ function Main() {
         label="sickleave"
         onChange={incomeHandler}
       ></TextField>
-      <Typography variant="body1">
-        Total:{" "}
-        {Object.values(income).reduce(
-          (prev, current) => parseInt(prev) + parseInt(current),
-          0
-        )}
-        {/*useEffectben updatelni a totalt! */}
-      </Typography>
+      <Typography variant="body1">Total: {incomeTotal}</Typography>
       <Button variant="contained" color="primary">
-        Hello World
+        Next
       </Button>
     </Container>
   );
