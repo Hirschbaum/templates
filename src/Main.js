@@ -9,10 +9,9 @@ function Main() {
 
   function incomeTotalHandler(obj) {
     let objClone = { ...obj };
-    let sum = Object.values(objClone).reduce(
-      (prev, current) => parseInt(prev) + parseInt(current),
-      0
-    );
+    let sum = Object.values(objClone)
+      .filter((prev) => prev !== "") //otherwise the total sum is NaN if the user delete an input
+      .reduce((prev, current) => parseInt(prev) + parseInt(current), 0);
     setIncomeTotal(sum);
   }
 
@@ -29,10 +28,6 @@ function Main() {
     setIncome(incomeData);
   }
 
-  /*function calculateIncome(e) {
-    incomeHandler(e);
-    incomeTotalHandler(income);
-  }*/
   console.log(income, incomeTotal);
 
   return (
