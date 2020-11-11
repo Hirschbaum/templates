@@ -4,7 +4,7 @@ import { Container, Typography } from "@material-ui/core";
 const Income = (incomeHandler, incomeDetails) => {
   return (
     <Container>
-      <Typography variant="body1">Total: {incomeDetails.income1}</Typography>
+      <Typography variant="body1">Total: </Typography>
     </Container>
   );
 };

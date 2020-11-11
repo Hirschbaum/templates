@@ -6,6 +6,8 @@ export const initialIncomeContext = {
     income2: "",
     income3: "",
   },
+
+  sumIncomes: 0,
 };
 
 const IncomeContext = createContext();
