@@ -1,20 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Typography } from "@material-ui/core";
 import Main from "./Main";
-import IncomeContext, { initialIncomeContext } from "./context/IncomeContext";
-//import { useEffect, useState } from "react";
+import Result from "./Result";
+import IncomeContext from "./context/IncomeContext";
 
 function App() {
-  /*const [sumDetails, setSumDetails] = useState({
-    income: {},
-  })
-
-  useEffect(() => {
-    update here sumDetails from context?
-  })*/
+  const [incomeSum, setIncomeSum] = useState(0);
 
   return (
-    <IncomeContext.Provider>
+    <IncomeContext.Provider value={[incomeSum, setIncomeSum]}>
       <Container>
         <Typography variant="h4" color="secondary">
           Kolla behörighet till ekonomiskt bistånd
@@ -22,8 +16,9 @@ function App() {
         <Typography variant="body1">
           React and Material UI playground
         </Typography>
-        <Main />
       </Container>
+      <Main />
+      <Result />
     </IncomeContext.Provider>
   );
 }
