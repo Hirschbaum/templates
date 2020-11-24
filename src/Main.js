@@ -1,7 +1,10 @@
 import React from "react";
+
 import { useState, useContext } from "react";
 import { Button, Container, TextField, Typography } from "@material-ui/core";
 import IncomeContext from "./context/IncomeContext";
+import ReducerInput from "./context/ReducerInput";
+import ReducerContext from "./ReducerContext";
 
 const Main = () => {
   const [income, setIncome] = useState({}); //to update the different income as an object
@@ -49,6 +52,9 @@ const Main = () => {
       <Button variant="contained" color="primary">
         Next
       </Button>
+
+      <ReducerContext />
+      <ReducerInput />
     </Container>
   );
 };

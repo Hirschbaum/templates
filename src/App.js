@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Container, Typography } from "@material-ui/core";
 import Main from "./Main";
-import Result from "./Result";
 import IncomeContext from "./context/IncomeContext";
 
 function App() {
@@ -18,7 +17,6 @@ function App() {
         </Typography>
       </Container>
       <Main />
-      <Result />
     </IncomeContext.Provider>
   );
 }
